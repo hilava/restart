@@ -56,7 +56,7 @@ end
       flash[:error] = @profile.errors.full_messages.join(", ")
     end
   end
-
+  
   private
 
   def profile_params
