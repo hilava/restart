@@ -81,3 +81,15 @@
   }
 
 }
+----------------------------SPLASH PAGE-----------------------------------------
+html,body { height: 100%; }
+.jumbotron {
+  background-image: url(splash.jpg);
+  background-size:cover;
+
+
+}
+.jumbotron .container {
+  height:450px;
+  color: white;
+}

@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  get 'profiles/index'
+
+  get 'profiles/show'
+
+  get 'profiles/new'
+
+  get 'profiles/edit'
+
+  get 'index/show'
+
+  get 'index/new'
+
+  get 'index/edit'
+
+  devise_for :users
   root 'site#index'
 
 

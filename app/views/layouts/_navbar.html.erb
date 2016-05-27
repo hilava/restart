@@ -13,18 +13,17 @@
               <span class="icon-bar"></span>
             </button>
               <%= link_to(image_tag('restart-logo.png', :class => "brand"), root_path) %>
-              <!-- <!%= link_to "Restart", root_path, class: "navbar-brand page-scroll" %> -->
           </div>
     ​
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="hamburger">
             <ul class="nav navbar-nav navbar-right">
-              <!-- <!% if user_signed_in? %> -->
+              <% if user_signed_in? %>
               <li><%= link_to "For Candidates", "" %></li>
               <li><%= link_to "For Employers", "" %></li>
-              <!-- <li><!%= link_to current_user.first_name.capitalize + "'s Profile", user_path(current_user.id) %></li> -->
+              <li><%= link_to current_user.first_name.capitalize + "'s Profile", user_path(current_user.id) %></li>
               <li><%= link_to "About", "" %></li>
-              <!-- <!% end %> -->
+              <% end %>
               <!-- links before dropdown go here in li tags -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -32,11 +31,12 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <!-- <!%if user_signed_in? %> -->
-                    <li><%= link_to("Sign Out", "", :method => :delete) %></li>
-                  <!-- <!%else%> -->
-                    <li><%= link_to "Log In", "" %></li>
-                  <!-- <!% end %> -->
+                  <%if user_signed_in? %>
+                    <li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
+                  <%else%>
+                    <li><%= link_to "Log In", new_user_session_path %></li>
+                    <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                  <% end %>
                 </ul>
               </li>
             </ul>
