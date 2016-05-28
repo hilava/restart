@@ -1,20 +1,18 @@
 Rails.application.routes.draw do
-  get 'profiles/index'
-
-  get 'profiles/show'
-
-  get 'profiles/new'
-
-  get 'profiles/edit'
-
-  get 'index/show'
-
-  get 'index/new'
-
-  get 'index/edit'
-
   devise_for :users
   root 'site#index'
+# -----------------------------------PROFILE ROUTES-------------------------------
+  get 'profiles/index', to: "profiles#index", as: :profiles
+  get 'profiles/:id', to: "profiles#show", as: :profile
+  post 'profiles', to: "profiles#create"
+  get 'profiles/new', to: "profiles#new", as: :new_profile
+  get 'profiles/:id/edit', to: "profiles#edit", as: :edit_profile
+  put 'profiles/:id', to: "profiles#update"
+  patch 'profiles/:id', to: "profiles#update"
+  delete 'profiles/:id', to: "profiles#destroy"
+
+
+
 
 
 
