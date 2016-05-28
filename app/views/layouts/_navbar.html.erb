@@ -21,7 +21,7 @@
               <% if user_signed_in? %>
               <li><%= link_to "For Candidates", "" %></li>
               <li><%= link_to "For Employers", "" %></li>
-              <li><%= link_to current_user.first_name.capitalize + "'s Profile", user_path(current_user.id) %></li>
+              <!-- <li><!%= link_to current_user.first_name.capitalize + "'s Profile", user_path(current_user.id) %></li> -->
               <li><%= link_to "About", "" %></li>
               <% end %>
               <!-- links before dropdown go here in li tags -->
