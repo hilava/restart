@@ -17,16 +17,17 @@
               <% if @profile.state %>
                 <%= @profile.state %>,
               <% end %><%= @profile.country %><hr/>
-              <p class="card-text"><h3><%= fa_icon "briefcase", :class => 'fa-icon' %> <b>Occupation:</b> <%= @profile.occupation %></h3>
-                        <h3><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @user.email %></h3>
-                        <h3><%= fa_icon "code", :class => 'fa-icon' %><%= link_to "Linkedin", @profile.linkedin %></h3>
-                        <h3><%= fa_icon "code", :class => 'fa-icon' %> <b>Resume: </b><%= @profile.resume %></h3></p>
+              <p class="card-text"><h3><%= fa_icon "briefcase", :class => 'fa-icon' %> Occupation: <%= @profile.occupation %></h3>
+                  <u><b>Contact Information</b></u>
+                  <h4><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @user.email %></h4>
+                  <h4><%= fa_icon "code", :class => 'fa-icon' %><%= link_to "Linkedin", @profile.linkedin %></h4><hr>
+                  <h4><%= fa_icon "code", :class => 'fa-icon' %> Resume: <%= @profile.resume %></h3></p><br><br>
               <% if current_user == @user%>
               <div>
                 <%= button_to "Edit Profile", edit_profile_path, method: 'get', class: 'btn btn-warning' %>
               </div>
               <div><br>
-                <%= button_to "Delete Profile", root_path, method: 'delete', class: 'btn btn-danger' %>
+                <%= button_to "Delete Profile", @profile, method: 'delete', class: 'btn btn-danger' %>
               </div>
               <% end %>
             </div>

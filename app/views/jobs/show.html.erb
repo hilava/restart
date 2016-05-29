@@ -1,0 +1,33 @@
+<div id="job_show">
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-4">
+
+        </div>
+        <div class="col-xs-8">
+          <div class="card">
+            <div class="card-block">
+              <h2 class="card-title">Title: <%= @job.title %></h2>
+              Category: <%= @job.category %><hr/>
+              <h3>Description: <%= @job.description %></h3>
+              <p class="card-text"><h3><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= @job.company_id %></h3>
+                <u><b>Contact Information</b></u>
+                <h4><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @job.email %></h4>
+                <h4><%= fa_icon "phone", :class => 'fa-icon' %><%= @job.phone_number %></h4></p><br><br>
+              <% if current_user == @user%>
+              <div>
+                <%= button_to "Edit Job", edit_job_path, method: 'get', class: 'btn btn-warning' %>
+              </div>
+              <div><br>
+                <%= button_to "Delete Job", @job, method: 'delete', class: 'btn btn-danger' %>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        </div>
+      <br/>
+    </div>
+  </section>
+</div>
