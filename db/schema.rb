@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529013700) do
+ActiveRecord::Schema.define(version: 20160529040912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "country"
+    t.string   "state"
+    t.string   "city"
+    t.string   "website"
+    t.string   "logo"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "jobs", force: :cascade do |t|
     t.string   "category"
@@ -25,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160529013700) do
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "company_id"
   end
 
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
@@ -65,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160529013700) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "companies", "users"
   add_foreign_key "jobs", "users"
   add_foreign_key "profiles", "users"
 end
