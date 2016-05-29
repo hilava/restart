@@ -46,13 +46,4 @@
     </div>
   </div><br><br><br>
   <!-- END NAVBAR -->
-  <div class="row">
-    <% flash.each do |name, msg| %>
-      <% if name == "notice"%>
-        <strong id="flash-notice"> <%= name.capitalize %>: <%= msg %></strong>
-      <% elsif name == "error" || name == "alert" %>
-        <strong id="flash-error"> <%= name.capitalize %>: <%= msg %> </strong>
-      <% end %>
-    <% end %>
-  </div>
 </div>

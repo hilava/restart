@@ -1,2 +1,39 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div id="profile_show">
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-4">
+          <!-- <!% if @profile.image.blank? %> -->
+          <%= image_tag "default_profile.jpg", :width => 150 %>
+          <!-- <!% else %>
+          <!%= image_tag @user.image %>
+          <!% end %> -->
+        </div>
+        <div class="col-xs-8">
+          <div class="card">
+            <div class="card-block">
+              <h2 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h2>
+              <%= @profile.city %>,
+              <% if @profile.state %>
+                <%= @profile.state %>,
+              <% end %><%= @profile.country %><hr/>
+              <p class="card-text"><h3><%= fa_icon "briefcase", :class => 'fa-icon' %> <b>Occupation:</b> <%= @profile.occupation %></h3>
+                        <h3><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @user.email %></h3>
+                        <h3><%= fa_icon "code", :class => 'fa-icon' %><%= link_to "Linkedin", @profile.linkedin %></h3>
+                        <h3><%= fa_icon "code", :class => 'fa-icon' %> <b>Resume: </b><%= @profile.resume %></h3></p>
+              <% if current_user == @user%>
+              <div>
+                <%= button_to "Edit Profile", edit_profile_path, method: 'get', class: 'btn btn-warning' %>
+              </div>
+              <div><br>
+                <%= button_to "Delete Profile", root_path, method: 'delete', class: 'btn btn-danger' %>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        </div>
+      <br/>
+    </div>
+  </section>
+</div>

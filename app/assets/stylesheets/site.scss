@@ -58,7 +58,7 @@
 
   .brand {
     position: fixed;
-    width: 120px;
+    width: 60px;
     top: 10px;
     left: 15px;
   }
@@ -94,6 +94,16 @@ html,body { height: 100%; }
   color: white;
 }
 
+#flash-error {
+  color: red;
+}
+#flash-notice {
+  color: green;
+}
+.flash {
+  margin-right: 50px;
+}
+
 -----------------------------PROFILES-------------------------------------------
 #new_profile h1 {
   margin-top: -20px;
@@ -102,4 +112,8 @@ html,body { height: 100%; }
   text-align: center;
   font-family: "PDF_in_Text";
   background-color: red;
+}
+
+#profile_edit h1 {
+
 }

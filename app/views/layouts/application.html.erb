@@ -5,9 +5,20 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'ga-logo.ico' %>
   </head>
   <body>
     <%= render 'layouts/navbar' %>
+    <!-- flash notifications -->
+    <div class="row pull-right flash">
+      <% flash.each do |name, msg| %>
+        <% if name == "notice"%>
+          <strong id="flash-notice"> <%= name.capitalize %>: <%= msg %></strong>
+        <% elsif name == "error" || name == "alert" %>
+          <strong id="flash-error"> <%= name.capitalize %>: <%= msg %> </strong>
+        <% end %>
+      <% end %>
+    </div>
     <%= yield %>
 
   </body>
