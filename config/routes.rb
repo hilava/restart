@@ -13,7 +13,15 @@ Rails.application.routes.draw do
 #------------------------------------COMPANY ROUTES-------------------------------
   post 'companies', to: "companies#create"
   get 'companies/new', to: "companies#new", as: :new_company
-
+# -----------------------------------JOBS ROUTES-------------------------------
+  get 'jobs', to: "jobs#index", as: :jobs
+  post 'jobs', to: "jobs#create"
+  get 'jobs/new', to: "jobs#new", as: :new_job
+  get 'jobs/:id/edit', to: "jobs#edit", as: :edit_job
+  get 'jobs/:id', to: "jobs#show", as: :job
+  put 'jobs/:id', to: "jobs#update"
+  patch 'jobs/:id', to: "jobs#update"
+  delete 'jobs/:id', to: "jobs#destroy"
 
 
 

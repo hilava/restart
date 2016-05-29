@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   def index
     @profiles = Profile.all
+    render :index
   end
 
   def show
