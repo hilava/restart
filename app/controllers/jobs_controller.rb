@@ -5,14 +5,14 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = job.find(params[:id])
+    @job = Job.find(params[:id])
     @user = User.find(@job.user_id)
     render :show
   end
 
   def new
     if current_user
-      @job = job.new
+      @job = Job.new
       @user = current_user
       render :new
     else
@@ -22,10 +22,10 @@ class JobsController < ApplicationController
   end
 
   def create
-    job = job.new(job_params)
+    job = Job.new(job_params)
     job.user = current_user
     if job.save
-      flash[:notice] = "job saved successfully"
+      flash[:notice] = "Job saved successfully"
       # redirect_to job_path
       redirect_to root_path
     else
@@ -35,15 +35,15 @@ class JobsController < ApplicationController
   end
 
   def edit
-    @job = job.find(params[:id])
+    @job = Job.find(params[:id])
     @user = current_user
     render :edit
   end
 
   def update
-    @job = job.find(params[:id])
+    @job = Job.find(params[:id])
     if @job.update_attributes(job_params)
-      flash[:notice] = "job updated successfully"
+      flash[:notice] = "Job updated successfully"
       redirect_to root_path
     else
       flash[:error] = @job.erorrs.full_messages.join(", ")
@@ -52,9 +52,9 @@ class JobsController < ApplicationController
   end
 
   def destroy
-    @job = job.find(params[:id])
+    @job = Job.find(params[:id])
     if @job.destroy
-      flash[:notice]  = "job deleted successfully"
+      flash[:notice]  = "Job deleted successfully"
       redirect_to root_path
     else
       flash[:error] = @job.errors.full_messages.join(", ")
@@ -63,7 +63,7 @@ class JobsController < ApplicationController
 
   private
 
-  def jobs_params
-    params.require(:job).permit(:category, :title, :email, :phone_number, :description, :user_id)
+  def job_params
+    params.require(:job).permit(:category, :title, :email, :phone_number, :description, :user_id, :company_id)
   end
 end
