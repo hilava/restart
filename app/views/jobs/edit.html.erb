@@ -1,0 +1,29 @@
+<section id="edit_job">
+  <%= form_for @job do |f| %>
+      <div class="row">
+        <div class="well col-md-4 col-md-offset-4">
+          <div class="form-group">
+            <%= f.number_field :company_id, class: "form-control", placeholder: "Company ID", autofocus: true%>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :category, class: "form-control", placeholder: "Category"%>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :title, class: "form-control", placeholder: "Title"%>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :description, class: "form-control", placeholder: "Job Description"%>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :email, class: "form-control", placeholder: "Email"%>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number"%>
+          </div>
+        <div>
+          <center><%= f.submit "Save", class: "btn btn-success" %></center>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<section>
