@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   put 'profiles/:id', to: "profiles#update"
   patch 'profiles/:id', to: "profiles#update"
   delete 'profiles/:id', to: "profiles#destroy"
-
+#------------------------------------COMPANY ROUTES-------------------------------
+  post 'companies', to: "companies#create"
+  get 'companies/new', to: "companies#new", as: :new_company
 
 
 
