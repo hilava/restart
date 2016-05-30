@@ -18,18 +18,32 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="hamburger">
             <ul class="nav navbar-nav navbar-right">
-              <% if user_signed_in? %>
-              <li><%= link_to "For Candidates", "" %></li>
-              <li><%= link_to "For Employers", "" %></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-cog icon-white" aria-hidden="true"></i>
+                  <span class="caret"></span> For Candidates</a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to("Create Profile", new_profile_path) %></li>
+                  <li><%= link_to("Jobs Search", "") %></li>
+                  <li><%= link_to("Browse Jobs", "") %></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-cog icon-white" aria-hidden="true"></i>
+                  <span class="caret"></span> For Employers</a>
+                <ul class="dropdown-menu">
+                    <li><%= link_to("Post Job", new_job_path) %></li>
+                    <li><%= link_to("Add Company", new_company_path) %></li>
+                    <li><%= link_to("Find Talent", "") %></li>
+                </ul>
+              </li>
               <!-- <li><!%= link_to current_user.first_name.capitalize + "'s Profile", user_path(current_user.id) %></li> -->
-              <li><%= link_to "About", "" %></li>
-              <% end %>
               <!-- links before dropdown go here in li tags -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-cog icon-white" aria-hidden="true"></i>
-                  <span class="caret"></span>
-                </a>
+                  <span class="caret"></span> Account</a>
                 <ul class="dropdown-menu">
                   <%if user_signed_in? %>
                     <li><%= link_to("Sign Out", destroy_user_session_path, :method => :delete) %></li>
