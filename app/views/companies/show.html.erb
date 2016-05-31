@@ -10,7 +10,12 @@
             <div class="card-block">
               <h3 class="card-title"><%= @company.name %></h3>
               <div><b>Description: </b><%= @company.description %></div><br>
-              <p class="card-text"><%= link_to "Company Website", @company.website %></p>
+              <p class="card-text"><%= link_to "Company Website", @company.website %>
+                <div>
+                  <%= button_to "Post Job",new_job_path, method: 'get', 
+                      class: 'btn btn-primary' %>
+                </div>
+              </p>
               <hr>
             </div>
           </div>
