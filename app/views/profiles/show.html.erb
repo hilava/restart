@@ -17,18 +17,23 @@
               <% if @profile.state %>
                 <%= @profile.state %>,
               <% end %><%= @profile.country %><hr/>
-              <p class="card-text"><h3><%= fa_icon "briefcase", :class => 'fa-icon' %> Occupation: <%= @profile.occupation %></h3>
+              <p class="card-text"><h3><%= fa_icon "briefcase", :class => 'fa-icon' %> Occupation: <%= @profile.occupation %></h3><br>
                   <u><b>Contact Information</b></u>
                   <h4><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @user.email %></h4>
-                  <h4><%= fa_icon "code", :class => 'fa-icon' %><%= link_to "Linkedin", @profile.linkedin %></h4><hr>
-                  <h4><%= fa_icon "code", :class => 'fa-icon' %> Resume: <%= @profile.resume %></h3></p><br><br>
+                  <%= fa_icon "code", :class => 'fa-icon' %> <%= link_to "Linkedin Page", @profile.linkedin %><hr>
+                  <h4>Resume: </h3><%= @profile.resume %></p><hr><br>
               <% if current_user == @user%>
-              <div>
-                <%= button_to "Edit Profile", edit_profile_path, method: 'get', class: 'btn btn-warning' %>
-              </div>
-              <div><br>
-                <%= button_to "Delete Profile", @profile, method: 'delete', class: 'btn btn-danger' %>
-              </div>
+                <div class="row">
+                  <div class="col-xs-8">
+                    <h3><%= link_to edit_profile_path(@profile) do %>
+                        <i class="fa fa-edit" aria-hidden="true"></i><% end %></h3>
+                  </div>
+                  <div class="col-xs-4">
+                    <h3><%= link_to profile_path(@profile), method: :delete,
+                        data:{confirm: "Are you sure you want to delete this profile?"} do %>
+                        <i class="fa fa-trash" aria-hidden="true"></i><% end %><h3>
+                  </div>
+                </div>
               <% end %>
             </div>
           </div>

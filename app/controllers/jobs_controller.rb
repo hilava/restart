@@ -1,7 +1,16 @@
 class JobsController < ApplicationController
   def index
-    @jobs = Job.all
-    render :index
+     if params[:search]
+       # call search method in model.rb 
+       @jobs = Job.search(params[:search]).order("created_at DESC")
+     else
+       @jobs = Job.all.order('created_at DESC')
+     end
+     render :index
+  end
+
+  def search
+    render :search
   end
 
   def show

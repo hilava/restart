@@ -19,6 +19,11 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.2.0'
 # boostrao modal
 gem 'bootstrap-modal-rails'
+gem 'rails4-autocomplete'
+# pagination gem
+gem 'kaminari'
+# Call 'byebug' anywhere in the code to stop execution and get a debugger console
+gem 'pry-byebug'
 # font awesome
 gem 'font-awesome-rails'
 # Use jquery as the JavaScript library

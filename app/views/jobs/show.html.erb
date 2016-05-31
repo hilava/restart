@@ -3,24 +3,30 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-4">
-
+          <%= image_tag "briefcase.jpg", :width => 150 %>
         </div>
         <div class="col-xs-8">
           <div class="card">
             <div class="card-block">
-              <h2 class="card-title">Title: <%= @job.title %></h2>
-              Category: <%= @job.category %><hr/>
-              <h3>Description: <%= @job.description %></h3>
-              <p class="card-text"><h3><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= @job.company_id %></h3>
+              <h3 class="card-title">Title: <%= @job.title %></h3>
+              <div><b>Category: </b><%= @job.category %></div><hr/>
+              <div><b>Description: </b><%= @job.description %></div><br>
+              <p class="card-text"><%= fa_icon "briefcase", :class => 'fa-icon' %><b> Company: </b><%= @job.company_id %><br><br>
                 <u><b>Contact Information</b></u>
-                <h4><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @job.email %></h4>
-                <h4><%= fa_icon "phone", :class => 'fa-icon' %><%= @job.phone_number %></h4></p><br><br>
+                <div><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @job.email %></div><br>
+                <div><%= fa_icon "phone", :class => 'fa-icon' %><%= @job.phone_number %></div></p>
               <% if current_user == @user%>
-              <div>
-                <%= button_to "Edit Job", edit_job_path, method: 'get', class: 'btn btn-warning' %>
-              </div>
-              <div><br>
-                <%= button_to "Delete Job", @job, method: 'delete', class: 'btn btn-danger' %>
+              <hr>
+              <div class="row">
+                <div class="col-xs-8">
+                  <h3><%= link_to edit_job_path(@job) do %>
+                      <i class="fa fa-edit" aria-hidden="true"></i><% end %></h3>
+                </div>
+                <div class="col-xs-4">
+                  <h3><%= link_to profile_path(@job), method: :delete,
+                      data:{confirm: "Are you sure you want to delete this job post?"} do %>
+                      <i class="fa fa-trash" aria-hidden="true"></i><% end %><h3>
+                </div>
               </div>
               <% end %>
             </div>

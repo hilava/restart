@@ -1,22 +1,41 @@
 class ProfilesController < ApplicationController
   def index
-    @profiles = Profile.all
+
+    if params[:search]
+      # call search method in model.rb
+      @profiles = Profile.search(params[:search]).order("created_at DESC")
+    else
+      @profiles = Profile.all.order('created_at DESC')
+    end
     render :index
   end
 
   def show
-    @profile = Profile.find(params[:id])
-    @user = User.find(@profile.user_id)
-    render :show
+    @profile = Profile.find_by(user_id: params[:id])
+    if @profile
+      @user = User.find(@profile.user_id)
+      render :show
+    else
+      flash[:alert] = "Profile has not been found"
+      redirect_to root_path
+    end
   end
 
   def new
     if current_user
-      @profile = Profile.new
-      @user = current_user
-      render :new
+      # check if user already has a profile
+      profile = Profile.find_by(user_id: current_user.id)
+      if profile
+        flash[:alert] = "You have already created a profile"
+        redirect_to root_path
+      else
+          # new profile
+        @profile = Profile.new
+        @user = current_user
+        render :new
+      end
     else
-      flash[:alert] = "Please login/sign up in order to create a profile"
+      flash[:notice] = "Please login/sign up in order to create a profile"
       redirect_to root_path
     end
   end

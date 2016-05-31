@@ -1,2 +1,38 @@
-<h1>Profiles#index</h1>
-<p>Find me in app/views/profiles/index.html.erb</p>
+<section>
+  <div id="profile_index">
+    <div class="container">
+      <%= form_tag(profiles_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Enter keywords" %>
+      <%= submit_tag "Search" %>
+      <% end %>
+
+      <% if @profiles.present? %><br><br>
+        <div id="profiles_results">
+          <% for profile in @profiles do %>
+            <div class="row">
+              <div class="col-xs-4 col-xs-offset-1">
+                <%= image_tag "default_profile.jpg", :width => 50 %>
+              </div><br><br>
+              <div class="col-xs-8 col-xs-offset-1">
+                <div class="card">
+                  <div class="card-block">
+                    <p class="card-text">
+                      <h4><%= link_to get_user(profile.id).first_name, profile_path(profile.user_id) %>
+                      <%= link_to get_user(profile.id).last_name, profile_path(profile.user_id) %> </h4>
+                      <%= @profile.city %>,
+                      <% if @profile.state %>
+                        <%= @profile.state %>,
+                      <% end %><%= @profile.country %><br>
+                    <div><b class="card-title">Occupation: </b><%= profile.occupation %></div></p><hr/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>There are no profiles containing the term(s) <%= params[:search] %>.</p>
+      <% end %>
+    </div>
+  </div>
+</section>
