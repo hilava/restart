@@ -20,7 +20,7 @@
                       <h4><%= link_to get_user(profile.id).first_name, profile_path(profile.user_id) %>
                       <%= link_to get_user(profile.id).last_name, profile_path(profile.user_id) %> </h4>
                       <%= @profile.city %>,
-                      <% if @profile.state %>
+                      <% if ! @profile.state.blank? %>
                         <%= @profile.state %>,
                       <% end %><%= @profile.country %><br>
                     <div><b class="card-title">Occupation: </b><%= profile.occupation %></div></p><hr/>
