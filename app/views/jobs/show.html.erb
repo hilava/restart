@@ -11,7 +11,7 @@
               <h3 class="card-title">Title: <%= @job.title %></h3>
               <div><b>Category: </b><%= @job.category %></div><hr/>
               <div><b>Description: </b><%= @job.description %></div><br>
-              <p class="card-text"><%= fa_icon "briefcase", :class => 'fa-icon' %><b> Company: </b><%= @job.company_id %><br><br>
+              <p class="card-text"><%= fa_icon "briefcase", :class => 'fa-icon' %><b> Company: </b><%= @job.company.name %><br><br>
                 <u><b>Contact Information</b></u>
                 <div><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @job.email %></div><br>
                 <div><%= fa_icon "phone", :class => 'fa-icon' %><%= @job.phone_number %></div></p>

@@ -1,0 +1,46 @@
+<div id="company_show">
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-4">
+          <%= image_tag "briefcase.jpg", :width => 150 %>
+        </div>
+        <div class="col-xs-8">
+          <div class="card">
+            <div class="card-block">
+              <h3 class="card-title"><%= @company.name %></h3>
+              <div><b>Description: </b><%= @company.description %></div><br>
+              <p class="card-text"><%= link_to "Company Website", @company.website %></p>
+              <hr>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="row" id="job_postings">
+          <% if @jobs.present? %><br><br>
+            <div id="jobs_results">
+              <% for job in @jobs do %>
+                  <div class="col-xs-8 col-xs-offset-1">
+                    <div class="card">
+                      <div class="card-block">
+                        <p class="card-text">
+                          <small><%= job.company.city %>,
+                          <% if ! job.company.state.blank? %>
+                            <%= job.company.state %>,
+                          <% end %><%= job.company.country %></small><br>
+                          <div><b class="card-title">Title: </b><%= link_to job.title, job_path(job.id) %></div><br>
+                          <div><b>Category: </b><%= job.category %></div></p><hr/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p>There are no jobs containing the term(s) <%= params[:search] %>.</p>
+          <% end %>
+        </div>
+      <br/>
+    </div>
+  </section>
+</div>

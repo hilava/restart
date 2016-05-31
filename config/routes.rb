@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'site#index'
-# -----------------------------------PROFILE ROUTES-------------------------------
+# -----------------------------------PROFILE ROUTES-----------------------------
   get 'profiles', to: "profiles#index", as: :profiles
   post 'profiles', to: "profiles#create"
   get 'profiles/new', to: "profiles#new", as: :new_profile
@@ -10,10 +10,13 @@ Rails.application.routes.draw do
   put 'profiles/:id', to: "profiles#update"
   patch 'profiles/:id', to: "profiles#update"
   delete 'profiles/:id', to: "profiles#destroy"
-#------------------------------------COMPANY ROUTES-------------------------------
+#------------------------------------COMPANY ROUTES-----------------------------
   post 'companies', to: "companies#create"
   get 'companies/new', to: "companies#new", as: :new_company
-# -----------------------------------JOBS ROUTES-------------------------------
+  get 'companies/search', to: "companies#search", as: :search_company
+  get 'companies/:id', to: "companies#show", as: :company
+
+# -----------------------------------JOBS ROUTES--------------------------------
   get 'jobs', to: "jobs#index", as: :jobs
   post 'jobs', to: "jobs#create"
   get 'jobs/new', to: "jobs#new", as: :new_job
@@ -22,8 +25,9 @@ Rails.application.routes.draw do
   put 'jobs/:id', to: "jobs#update"
   patch 'jobs/:id', to: "jobs#update"
   delete 'jobs/:id', to: "jobs#destroy"
-
-
+# ----------------------------------COMPANY/JOB ROUTES--------------------------
+  post 'companies/:id/jobs', to: "jobs#create"
+  #get 'companies/:id/jobs/new', to: "jobs#new", as: :new_job
 
 
 

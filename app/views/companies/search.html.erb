@@ -1,0 +1,34 @@
+<section>
+  <div id="company_search">
+    <div class="container">
+      <%= form_tag(search_company_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Company Name" %>
+      <%= submit_tag "Find" %>
+      <% end %>
+
+      <% if @companies.present? %><br><br>
+        <div id="companies_results">
+          <% for company in @companies do %>
+            <div class="row">
+              <div class="col-xs-4">
+                <%= image_tag "briefcase.jpg", :width => 40 %>
+              </div><br><br>
+              <div class="col-xs-8 col-xs-offset-1">
+                <div class="card">
+                  <div class="card-block">
+                    <p class="card-text">
+                      <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= link_to company.name, company_path(company.id) %></b><br><br>
+                      <div><b class="card-title">Description: </b><%= company.description %></div></p><hr/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>There are no companies containing the term(s) <%= params[:search] %>.</p>
+        <%= button_to "Add Company", new_company_path, method: 'get', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</section>

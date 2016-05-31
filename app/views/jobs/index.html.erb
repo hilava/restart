@@ -17,13 +17,13 @@
                 <div class="card">
                   <div class="card-block">
                     <p class="card-text">
-                      <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= job.company_id %></b><br><br>
+                      <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= job.company.name %></b><br><br>
                       <small><%= job.company.city %>,
                       <% if ! job.company.state.blank? %>
                         <%= job.company.state %>,
                       <% end %><%= job.company.country %></small><br>
-                    <div><b class="card-title">Title: </b><%= link_to job.title, job_path(job.id) %></div><br>
-                    <div><b>Category: </b><%= job.category %></div></p><hr/>
+                      <div><b class="card-title">Title: </b><%= link_to job.title, job_path(job.id) %></div><br>
+                      <div><b>Category: </b><%= job.category %></div></p><hr/>
                   </div>
                 </div>
               </div>

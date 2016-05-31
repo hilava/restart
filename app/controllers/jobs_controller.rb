@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   def index
      if params[:search]
-       # call search method in model.rb 
+       # call search method in model.rb
        @jobs = Job.search(params[:search]).order("created_at DESC")
      else
        @jobs = Job.all.order('created_at DESC')
@@ -33,6 +33,7 @@ class JobsController < ApplicationController
   def create
     job = Job.new(job_params)
     job.user = current_user
+    job.company_id = params[:id]
     if job.save
       flash[:notice] = "Job saved successfully"
       # redirect_to job_path
