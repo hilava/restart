@@ -10,15 +10,20 @@
         <div id="jobs_results">
           <% for job in @jobs do %>
             <div class="row">
-              <div class="col-xs-4 col-xs-offset-1">
+              <div class="col-xs-4">
                 <%= image_tag "briefcase.jpg", :width => 40 %>
               </div><br><br>
               <div class="col-xs-8 col-xs-offset-1">
                 <div class="card">
                   <div class="card-block">
-                    <p class="card-text"><b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: </b><%= job.company_id %><br>
+                    <p class="card-text">
+                      <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= job.company_id %></b><br><br>
+                      <small><%= job.company.city %>,
+                      <% if ! job.company.state.blank? %>
+                        <%= job.company.state %>,
+                      <% end %><%= job.company.country %></small><br>
                     <div><b class="card-title">Title: </b><%= link_to job.title, job_path(job.id) %></div><br>
-                    <div><b>Category: <%= job.category %></b><p><hr/>
+                    <div><b>Category: </b><%= job.category %></div></p><hr/>
                   </div>
                 </div>
               </div>

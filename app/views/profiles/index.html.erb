@@ -10,19 +10,19 @@
         <div id="profiles_results">
           <% for profile in @profiles do %>
             <div class="row">
-              <div class="col-xs-4 col-xs-offset-1">
+              <div class="col-xs-4">
                 <%= image_tag "default_profile.jpg", :width => 50 %>
               </div><br><br>
               <div class="col-xs-8 col-xs-offset-1">
                 <div class="card">
                   <div class="card-block">
                     <p class="card-text">
-                      <h4><%= link_to get_user(profile.id).first_name, profile_path(profile.user_id) %>
-                      <%= link_to get_user(profile.id).last_name, profile_path(profile.user_id) %> </h4>
-                      <%= @profile.city %>,
-                      <% if ! @profile.state.blank? %>
-                        <%= @profile.state %>,
-                      <% end %><%= @profile.country %><br>
+                      <b><%= link_to profile.user.first_name, profile_path(profile.user_id) %>
+                      <%= link_to profile.user.last_name, profile_path(profile.user_id) %> </b><br>
+                      <small><%= profile.city %>,
+                      <% if ! profile.state.blank? %>
+                        <%= profile.state %>,
+                      <% end %><%= profile.country %></small><br>
                     <div><b class="card-title">Occupation: </b><%= profile.occupation %></div></p><hr/>
                   </div>
                 </div>
