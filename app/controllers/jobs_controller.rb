@@ -23,7 +23,6 @@ class JobsController < ApplicationController
     if current_user
       @job = Job.new
       @user = current_user
-      @@company_id = params[:company_id]
       render :new
     else
       flash[:alert] = "Please login/sign up in order to create a job"
@@ -34,7 +33,6 @@ class JobsController < ApplicationController
   def create
     job = Job.new(job_params)
     job.user = current_user
-    job.company_id = @@company_id
     if job.save
       flash[:notice] = "Job saved successfully"
       # redirect_to job_path
