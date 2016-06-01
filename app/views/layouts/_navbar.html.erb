@@ -56,8 +56,19 @@
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
+        <!-- flash notifications -->
+        <div class="row pull-right flash">
+          <% flash.each do |name, msg| %>
+            <% if name == "notice"%>
+              <strong id="flash-notice"> <%= name.capitalize %>: <%= msg %></strong>
+            <% elsif name == "error" || name == "alert" %>
+              <strong id="flash-error"> <%= name.capitalize %>: <%= msg %> </strong>
+            <% end %>
+          <% end %>
+        </div>
       </nav>
     </div>
-  </div><br><br><br>
+  </div>
   <!-- END NAVBAR -->
+
 </div>
