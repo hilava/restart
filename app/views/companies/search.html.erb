@@ -1,24 +1,24 @@
 <section>
-  <div id="company_search">
-    <div class="container">
+  <div id="company_search" class="top">
+    <div class="container form-inline">
       <%= form_tag(search_company_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Company Name" %>
-      <%= submit_tag "Find" %>
+      <%= text_field_tag :search, params[:search], placeholder: "Company Name", :class=>"form-control search" %>
+      <%= submit_tag "Find", :class=>"btn btn-primary" %>
       <% end %>
 
       <% if @companies.present? %><br><br>
         <div id="companies_results">
           <% for company in @companies do %>
             <div class="row">
-              <div class="col-xs-4">
-                <%= image_tag "briefcase.jpg", :width => 40 %>
-              </div><br><br>
               <div class="col-xs-8 col-xs-offset-1">
                 <div class="card">
                   <div class="card-block">
+                    <%= image_tag "briefcase.jpg", :width => 40 %><br><br>
                     <p class="card-text">
                       <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= link_to company.name, company_path(company.id) %></b><br><br>
-                      <div><b class="card-title">Description: </b><%= company.description %></div></p><hr/>
+                      <div><b class="card-title">Description: </b><%= company.description %></div><br>
+                      <%= link_to "View", company_path(company.id)  , class: "btn btn-info" %>
+                    </p><hr/>
                   </div>
                 </div>
               </div>

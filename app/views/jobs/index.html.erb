@@ -1,21 +1,19 @@
 <section>
-  <div id="jobs_index">
-    <div class="container">
+  <div id="jobs-index" class="top">
+    <div class="container form-inline">
       <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Enter keywords" %>
-      <%= submit_tag "Search" %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search job postings", :class=>"form-control search" %>
+      <%= submit_tag "Search", :class=>"btn btn-primary" %>
       <% end %>
 
       <% if @jobs.present? %><br><br>
         <div id="jobs_results">
           <% for job in @jobs do %>
             <div class="row">
-              <div class="col-xs-4">
-                <%= image_tag "briefcase.jpg", :width => 40 %>
-              </div><br><br>
               <div class="col-xs-8 col-xs-offset-1">
                 <div class="card">
                   <div class="card-block">
+                    <%= image_tag "briefcase.jpg", :width => 40 %><br><br>
                     <p class="card-text">
                       <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= job.company.name %></b><br><br>
                       <small><%= job.company.city %>,
@@ -23,7 +21,9 @@
                         <%= job.company.state %>,
                       <% end %><%= job.company.country %></small><br>
                       <div><b class="card-title">Title: </b><%= link_to job.title, job_path(job.id) %></div><br>
-                      <div><b>Category: </b><%= job.category %></div></p><hr/>
+                      <div><b>Category: </b><%= job.category %></div><br>
+                      <%= link_to "View", job_path(job.id)  , class: "btn btn-info" %>
+                    </p><hr/>
                   </div>
                 </div>
               </div>

@@ -33,10 +33,8 @@
 
     a:hover,
     a:focus {
-      color: green;
       font-weight: bold;
-      font-size: 17px;
-      font-color: black;
+      color: black;
     }
 
     .main {
@@ -48,6 +46,9 @@
 
   }
 
+  .navbar-default {
+    margin-bottom: 0;
+  }
   /*navbar brand text properties*/
   .navbar-default .navbar-header .navbar-brand {
       text-transform: uppercase;
@@ -64,10 +65,9 @@
   }
 
   .brand {
-    position: fixed;
     width: 60px;
-    top: 10px;
-    left: 15px;
+    margin-top: 8px;
+    margin-left: 15px;
   }
 
   .dropdown {
@@ -88,11 +88,8 @@
   }
 
 }
-----------------------------SPLASH PAGE-----------------------------------------
+// ----------------------------SPLASH PAGE--------------------------------------
 
-  .jumbotron .container {
-
-  }
   .jumbotron-fluid {
     background: image-url('ofice.jpg');
     background-size:cover;
@@ -100,7 +97,7 @@
     color: white;
     }
 
----------------------------APPLICATION------------------------------------------
+// ---------------------------APPLICATION---------------------------------------
 html,body {
   height: 100%;
   background-color: #F5F5F5;
@@ -114,8 +111,12 @@ html,body {
     margin-right: 50px;
   }
 }
+.top {
+  margin-top: 50px;
+}
 
------------------------------PROFILES-------------------------------------------
+
+// -----------------------------PROFILES----------------------------------------
 #new_profile h1 {
   margin-top: -20px;
   font-size: 60px;
@@ -124,6 +125,22 @@ html,body {
   font-family: "PDF_in_Text";
 }
 
+#profile_index {
+  margin-top: 50px;
+}
+
 .fa-icon {
     color: navy;
   }
+
+// // ------------------------------JOBS-------------------------------------------
+// #jobs-index {
+//   margin-top: 50px;
+// }
+// #job_show {
+//   margin-top: 50px;
+// }
+// // ------------------------------COMPANIES--------------------------------------
+// #company_show {
+//
+// }
