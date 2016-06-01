@@ -26,9 +26,8 @@ Rails.application.routes.draw do
   patch 'jobs/:id', to: "jobs#update"
   delete 'jobs/:id', to: "jobs#destroy"
 # ----------------------------------COMPANY/JOB ROUTES--------------------------
-  post 'companies/:id/jobs', to: "jobs#create"
-  get 'companies/:id/jobs/new', to: "jobs#new", as: :new_job
-
+  post 'companies/:company_id/jobs', to: "jobs#create"
+  get 'companies/:company_id/jobs/new', to: "jobs#new", as: :new_company_job
 
 
   # The priority is based upon order of creation: first created -> highest priority.

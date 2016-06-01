@@ -12,7 +12,7 @@
               <div><b>Description: </b><%= @company.description %></div><br>
               <p class="card-text"><%= link_to "Company Website", @company.website %>
                 <div>
-                  <%= button_to "Post Job",new_job_path, method: 'get', 
+                  <%= button_to "Post Job", new_company_job_path(@company.id), method: 'get', 
                       class: 'btn btn-primary' %>
                 </div>
               </p>
