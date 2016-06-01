@@ -1,5 +1,15 @@
 <div id="splash">
   <div class="jumbotron jumbotron-fluid">
+    <!-- flash notifications -->
+    <div class="row pull-right flash">
+      <% flash.each do |name, msg| %>
+        <% if name == "notice"%>
+          <strong id="flash-notice"> <%= name.capitalize %>: <%= msg %></strong>
+        <% elsif name == "error" || name == "alert" %>
+          <strong id="flash-error"> <%= name.capitalize %>: <%= msg %> </strong>
+        <% end %>
+      <% end %>
+    </div>
   <div class="container">
     <h1 class="display-3">Welcome to Restart</h1>
     <p class="lead">Thinking of you for a change</p>

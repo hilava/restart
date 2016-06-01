@@ -9,16 +9,7 @@
   </head>
   <body>
     <%= render 'layouts/navbar' %>
-    <!-- flash notifications -->
-    <div class="row pull-right flash">
-      <% flash.each do |name, msg| %>
-        <% if name == "notice"%>
-          <strong id="flash-notice"> <%= name.capitalize %>: <%= msg %></strong>
-        <% elsif name == "error" || name == "alert" %>
-          <strong id="flash-error"> <%= name.capitalize %>: <%= msg %> </strong>
-        <% end %>
-      <% end %>
-    </div>
+
     <%= yield %>
 
   </body>

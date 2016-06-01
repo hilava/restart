@@ -43,6 +43,7 @@ class ProfilesController < ApplicationController
 def create
   profile = Profile.new(profile_params)
   profile.user = current_user
+  profile.linkedin = include_https?(profile)
   if profile.save
     flash[:notice] = "Profile saved successfully"
     # redirect_to profile_path
@@ -61,6 +62,7 @@ end
 
   def update
     @profile = Profile.find(params[:id])
+    @profile.linkedin = include_https?(@profile)
     if @profile.update_attributes(profile_params)
       flash[:notice] = "Profile updated successfully"
       redirect_to root_path
@@ -84,5 +86,13 @@ end
 
   def profile_params
     params.require(:profile).permit(:country, :state, :city, :occupation, :user_id, :image, :linkedin, :resume)
+  end
+
+  def include_https?(profile)
+    if profile.linkedin.start_with?("www")
+      profile.linkedin = "https://" + profile.linkedin
+    else
+      profile.linkedin
+    end
   end
 end
