@@ -18,7 +18,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="hamburger">
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
+              <li class="dropdown main">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="caret"></span> For Candidates</a>
                 <ul class="dropdown-menu">
@@ -27,7 +27,7 @@
                   <li><%= link_to("Browse Companies", search_company_path) %></li>
                 </ul>
               </li>
-              <li class="dropdown">
+              <li class="dropdown main">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span class="caret"></span> For Employers</a>
                 <ul class="dropdown-menu">
@@ -37,7 +37,7 @@
                 </ul>
               </li>
               <% if user_signed_in? && current_user.profiles.first %>
-                <li><%= link_to current_user.first_name.capitalize + "'s Profile", profile_path(current_user.id) %></li>
+                <li class="profile"><%= link_to current_user.first_name.capitalize + "'s Profile", profile_path(current_user.id) %></li>
               <% end %>
               <!-- links before dropdown go here in li tags -->
               <li class="dropdown">
