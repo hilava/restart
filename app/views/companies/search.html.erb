@@ -17,7 +17,14 @@
                     <p class="card-text">
                       <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= link_to company.name, company_path(company.id) %></b><br><br>
                       <div><b class="card-title">Description: </b><%= company.description %></div><br>
-                      <%= link_to "View", company_path(company.id)  , class: "btn btn-info" %>
+                      <div class="row">
+                        <div class="col-md-3 col-md-offset-1">
+                        <%= link_to "View", company_path(company.id)  , class: "btn btn-info" %>
+                        </div>
+                        <div class="col-md-3">
+                        <%= button_to "Post Job", new_company_job_path(company.id), method: 'get', class: 'btn btn-primary' %>
+                      </div>
+                      </div>
                     </p><hr/>
                   </div>
                 </div>

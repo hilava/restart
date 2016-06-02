@@ -24,7 +24,7 @@ class CompaniesController < ApplicationController
     company = Company.new(company_params)
     company.user = current_user
     # add https:// if the website starts with www
-    company.website = include_https?
+    company.website = include_https?(company)
     if company.save
       flash[:notice] = "Company saved successfully"
       redirect_to root_path

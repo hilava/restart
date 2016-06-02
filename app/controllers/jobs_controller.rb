@@ -23,6 +23,7 @@ class JobsController < ApplicationController
     if current_user
       @job = Job.new
       @user = current_user
+      @company = Company.find(params[:company_id]) 
       render :new
     else
       flash[:alert] = "Please login/sign up in order to create a job"

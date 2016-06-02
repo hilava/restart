@@ -16,10 +16,10 @@
                     <%= image_tag "briefcase.jpg", :width => 40 %><br><br>
                     <p class="card-text">
                       <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= job.company.name %></b><br><br>
-                      <small><%= job.company.city %>,
-                      <% if ! job.company.state.blank? %>
-                        <%= job.company.state %>,
-                      <% end %><%= job.company.country %></small><br>
+                      <small><%= job.city %>,
+                      <% if ! job.state.blank? %>
+                        <%= job.state %>,
+                      <% end %><%= job.country %></small><br>
                       <div><b class="card-title">Title: </b><%= link_to job.title, job_path(job.id) %></div><br>
                       <div><b>Category: </b><%= job.category %></div><br>
                       <%= link_to "View", job_path(job.id)  , class: "btn btn-info" %>

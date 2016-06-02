@@ -1,4 +1,4 @@
-<div id="job_show">
+<div id="job_show" class="top">
   <section>
     <div class="container">
       <div class="row">
@@ -9,9 +9,15 @@
           <div class="card">
             <div class="card-block">
               <h3 class="card-title">Title: <%= @job.title %></h3>
-              <div><b>Category: </b><%= @job.category %></div><hr/>
+              <div><b>Category: </b><%= @job.category %></div>
+              <small><%= @job.city %>,
+              <% if ! @job.state.blank? %>
+                <%= @job.state %>,
+              <% end %><%= @job.country %></small>
+              <hr/>
               <div><b>Description: </b><%= @job.description %></div><br>
-              <p class="card-text"><%= fa_icon "briefcase", :class => 'fa-icon' %><b> Company: </b><%= @job.company.name %><br><br>
+              <p class="card-text"><%= fa_icon "briefcase", :class => 'fa-icon' %>
+                <b> Company: </b><%= @job.company.name %><br><br><br>
                 <u><b>Contact Information</b></u>
                 <div><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @job.email %></div><br>
                 <div><%= fa_icon "phone", :class => 'fa-icon' %><%= @job.phone_number %></div></p>
