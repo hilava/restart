@@ -6,5 +6,11 @@ class User < ActiveRecord::Base
 
   has_many :profiles
   has_many :jobs
-  has_many :companies       
+  has_many :companies
+
+  validates :email,
+            uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
 end

@@ -22,7 +22,7 @@
                         <%= profile.state %>,
                       <% end %><%= profile.country %></small><br>
                     <div><b class="card-title">Occupation: </b><%= profile.occupation %></div><br>
-                    <%= link_to "View", profile_path(profile.id)  , class: "btn btn-info" %>
+                    <%= link_to "View", profile_path(profile.user_id)  , class: "btn btn-info" %>
                   </p><hr/>
                   </div>
                 </div>

@@ -21,7 +21,8 @@
                         <%= job.state %>,
                       <% end %><%= job.country %></small><br>
                       <div><b class="card-title">Title: </b><%= link_to job.title, job_path(job.id) %></div><br>
-                      <div><b>Category: </b><%= job.category %></div><br>
+                      <div><b>Category: </b><%= job.category %></div>
+                      <span class="quiet"><small>posted <%= time_ago_in_words(job.created_at) %> ago</small></span><br><br>
                       <%= link_to "View", job_path(job.id)  , class: "btn btn-info" %>
                     </p><hr/>
                   </div>

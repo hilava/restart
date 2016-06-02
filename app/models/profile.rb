@@ -1,6 +1,12 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
 
+  validates :email,uniqueness: true
+  validates :country, presence: true
+  validates :city, presence: true
+  validates :resume, presence: true
+  validates :occupation, presence: true
+
   def self.search(search)
     # The search methos is called in the index method
     # It searches for a word (search) in country / state / city / occupation
