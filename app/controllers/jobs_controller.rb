@@ -23,7 +23,7 @@ class JobsController < ApplicationController
     if current_user
       @job = Job.new
       @user = current_user
-      @company = Company.find(params[:company_id]) 
+      @company = Company.find(params[:company_id])
       render :new
     else
       flash[:alert] = "Please login/sign up in order to create a job"
@@ -47,6 +47,7 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     @user = current_user
+    @company = Company.find(@job.company_id) 
     render :edit
   end
 

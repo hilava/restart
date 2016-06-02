@@ -43,6 +43,9 @@
     .profile{
       margin-top: 2px;
     }
+    .contact {
+      margin-top: 2px;
+    }
 
   }
 
@@ -114,7 +117,10 @@ html,body {
 .top {
   margin-top: 50px;
 }
-
+hr {
+  background-color: #616161;
+  border-width: 5px;
+}
 
 // -----------------------------PROFILES----------------------------------------
 #new_profile h1 {
@@ -132,15 +138,3 @@ html,body {
 .fa-icon {
     color: navy;
   }
-
-// // ------------------------------JOBS-------------------------------------------
-// #jobs-index {
-//   margin-top: 50px;
-// }
-// #job_show {
-//   margin-top: 50px;
-// }
-// // ------------------------------COMPANIES--------------------------------------
-// #company_show {
-//
-// }

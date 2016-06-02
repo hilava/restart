@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'site#index'
+  get 'contact', to: "site#contact", as: :contact
 # -----------------------------------PROFILE ROUTES-----------------------------
   get 'profiles', to: "profiles#index", as: :profiles
   post 'profiles', to: "profiles#create"
