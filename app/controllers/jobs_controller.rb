@@ -2,9 +2,9 @@ class JobsController < ApplicationController
   def index
      if params[:search]
        # call search method in model.rb
-       @jobs = Job.search(params[:search]).order("created_at DESC")
+       @jobs = Job.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => 6)
      else
-       @jobs = Job.all.order('created_at DESC')
+       @jobs = Job.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 6)
      end
      render :index
   end
@@ -47,7 +47,7 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     @user = current_user
-    @company = Company.find(@job.company_id) 
+    @company = Company.find(@job.company_id)
     render :edit
   end
 

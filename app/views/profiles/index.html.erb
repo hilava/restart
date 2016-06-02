@@ -29,6 +29,8 @@
               </div>
             </div>
           <% end %>
+          <!-- uses the will_paginate bootstrap gem -->
+          <%= will_paginate @jobs, renderer: BootstrapPagination::Rails%>
         </div>
       <% else %>
         <p>There are no profiles containing the term(s) <%= params[:search] %>.</p>

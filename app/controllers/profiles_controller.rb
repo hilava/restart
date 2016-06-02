@@ -3,9 +3,9 @@ class ProfilesController < ApplicationController
 
     if params[:search]
       # call search method in model.rb
-      @profiles = Profile.search(params[:search]).order("created_at DESC")
+      @profiles = Profile.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => 6)
     else
-      @profiles = Profile.all.order('created_at DESC')
+      @profiles = Profile.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 6)
     end
     render :index
   end
