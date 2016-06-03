@@ -1,6 +1,8 @@
 class ProfilesController < ApplicationController
-  def index
+  before_filter :set_profile, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize, only: [:edit, :update, :destroy]
 
+  def index
     if params[:search]
       # call search method in model.rb
       @profiles = Profile.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => 6)
@@ -11,7 +13,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile = Profile.find_by(user_id: params[:id])
+    #@profile = Profile.find_by(user_id: params[:id])
     if @profile
       @user = User.find(@profile.user_id)
       render :show
@@ -55,13 +57,13 @@ def create
 end
 
   def edit
-    @profile = Profile.find(params[:id])
+    #@profile = Profile.find(params[:id])
     @user = current_user
     render :edit
   end
 
   def update
-    @profile = Profile.find(params[:id])
+    #@profile = Profile.find(params[:id])
     @profile.linkedin = include_https?(@profile)
     if @profile.update_attributes(profile_params)
       flash[:notice] = "Profile updated successfully"
@@ -73,7 +75,7 @@ end
   end
 
   def destroy
-    @profile = Profile.find(params[:id])
+    #@profile = Profile.find(params[:id])
     if @profile.destroy
       flash[:notice]  = "Profile deleted successfully"
       redirect_to root_path
@@ -95,4 +97,17 @@ end
       profile.linkedin
     end
   end
+
+  def set_profile
+    profile_id = params[:id]
+    @profile = Profile.find(profile_id)
+  end
+
+  def authorize
+    if @profile.user_id != current_user.id
+      flash[:alert] = "Only record owners can edit and delete records"
+      redirect_to root_path
+    end
+  end
+
 end

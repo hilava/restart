@@ -1,10 +1,13 @@
 class CompaniesController < ApplicationController
+  before_filter :set_company, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize, only: [:edit, :update, :destroy]
+
   def index
 
   end
 
   def show
-    @company = Company.find(params[:id])
+    #@company = Company.find(params[:id])
     @jobs = @company.jobs
     render :show
   end
@@ -65,6 +68,18 @@ class CompaniesController < ApplicationController
 
   def company_params
     params.require(:company).permit(:name, :description, :website, :logo, :user_id)
+  end
+
+  def set_company
+    company_id = params[:id]
+    @company = Company.find(company_id)
+  end
+
+  def authorize
+    if @company.user_id != current_user.id
+      flash[:alert] = "Only record owners can edit and delete records"
+      redirect_to root_path
+    end
   end
 
 end

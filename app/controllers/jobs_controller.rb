@@ -2,7 +2,6 @@ class JobsController < ApplicationController
   before_filter :set_job, only: [:show, :edit, :update, :destroy]
   before_filter :authorize, only: [:edit, :update, :destroy]
 
-
   def index
      if params[:search]
        # call search method in model.rb
