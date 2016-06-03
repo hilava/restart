@@ -99,7 +99,7 @@ end
   end
 
   def set_profile
-    profile_id = params[:id]
+    profile_id = Profile.find_by(user_id: params[:id])
     @profile = Profile.find(profile_id)
   end
 

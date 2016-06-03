@@ -25,6 +25,7 @@ gem 'rails4-autocomplete'
 gem 'kaminari'
 # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 gem 'pry-byebug'
+gem 'hirb'
 # font awesome
 gem 'font-awesome-rails'
 # Use jquery as the JavaScript library
