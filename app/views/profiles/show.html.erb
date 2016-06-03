@@ -19,7 +19,7 @@
               <% end %><%= @profile.country %></small><hr>
               <p class="card-text"><h3><%= fa_icon "briefcase", :class => 'fa-icon' %> Occupation: <%= @profile.occupation %></h3><br>
                   <u><b>Contact Information</b></u>
-                  <h4><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @user.email %></h4>
+                  <h4><%= fa_icon "envelope", :class => 'fa-icon' %> <%= mail_to @user.email %></h4>
                   <%= fa_icon "code", :class => 'fa-icon' %> <%= link_to "Linkedin Page", @profile.linkedin %><hr>
                   <h4>Resume: </h3><%= @profile.resume %></p><hr>
               <% if current_user == @user%>

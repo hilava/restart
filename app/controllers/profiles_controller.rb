@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    #@profile = Profile.find_by(user_id: params[:id])
+    @profile = Profile.find(params[:id])
     if @profile
       @user = User.find(@profile.user_id)
       render :show
@@ -99,7 +99,7 @@ end
   end
 
   def set_profile
-    profile_id = Profile.find_by(user_id: params[:id])
+    profile_id = Profile.find(params[:id])
     @profile = Profile.find(profile_id)
   end
 

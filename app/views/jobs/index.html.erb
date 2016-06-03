@@ -16,8 +16,8 @@
                     <% if ! job.company.logo.blank? %>
                       <%= image_tag job.company.logo, :width => 40   %>
                     <% else %>
-                      <%= image_tag "briefcase.jpg", :width => 40 %><br><br>
-                    <% end %>  
+                      <%= image_tag "briefcase.jpg", :width => 40 %>
+                    <% end %><br><br>  
                     <p class="card-text">
                       <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= link_to job.company.name, company_path(job.company) %></b><br><br>
                       <small><%= job.city %>,

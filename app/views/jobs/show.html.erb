@@ -21,9 +21,9 @@
               <hr/>
               <div><b>Description: </b><%= @job.description %></div><br>
               <p class="card-text"><%= fa_icon "briefcase", :class => 'fa-icon' %>
-                <b> Company: </b><%= @job.company.name %><br><br><br>
+                <b> Company: </b><%= link_to @job.company.name, company_path(@job.company) %><br><br><br>
                 <u><b>Contact Information</b></u>
-                <div><%= fa_icon "envelope", :class => 'fa-icon' %> <%= @job.email %></div><br>
+                <div><%= fa_icon "envelope", :class => 'fa-icon' %> <%= mail_to @job.email %></div><br>
                 <div><%= fa_icon "phone", :class => 'fa-icon' %><%= @job.phone_number %></div></p>
               <% if current_user == @user%>
               <hr>

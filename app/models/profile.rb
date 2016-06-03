@@ -7,7 +7,7 @@ class Profile < ActiveRecord::Base
   validates :occupation, presence: true
 
   def self.search(search)
-    # The search methos is called in the index method
+    # The search method is called in the index method
     # It searches for a word (search) in country / state / city / occupation
     # and it is case insensitive
     where("LOWER(country) LIKE ? OR LOWER(state) LIKE ? OR LOWER(city) LIKE ?
