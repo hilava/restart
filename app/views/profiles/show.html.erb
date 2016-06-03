@@ -3,7 +3,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <%= image_tag "default_profile.jpg", :width => 150 %>
+          <% if ! @profile.image.blank? %>
+            <%= image_tag @profile.image, :width => 150   %>
+          <% else %>
+            <%= image_tag "default_profile.jpg", :width => 150 %>
+          <% end %><br><br>
         </div>
         <div class="col-md-8">
           <div class="card">

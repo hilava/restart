@@ -3,7 +3,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">
-          <%= image_tag "briefcase.jpg", :width => 150 %>
+          <% if ! @job.company.logo.blank? %>
+            <%= image_tag @job.company.logo, :width => 120   %>
+          <% else %>
+            <%= image_tag "briefcase.jpg", :width => 120 %><br><br>
+          <% end %>
         </div>
         <div class="col-md-6">
           <div class="card">

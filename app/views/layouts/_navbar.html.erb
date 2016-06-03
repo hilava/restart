@@ -38,7 +38,7 @@
                 </ul>
               </li>
               <% if user_signed_in? && current_user.profiles.first %>
-                <li class="profile"><%= link_to current_user.first_name.capitalize + "'s Profile", profile_path(current_user.id) %></li>
+                <li class="profile"><%= link_to current_user.first_name.capitalize + "'s Profile", profile_path(get_profile) %></li>
               <% end %>
               <!-- links before dropdown go here in li tags -->
               <li class="dropdown">

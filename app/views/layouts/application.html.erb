@@ -6,6 +6,15 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag 'restart-logo.ico' %>
+    <!-- uploadcare scripts -->
+    <script>
+     UPLOADCARE_LOCALE = "en";
+     UPLOADCARE_TABS = "file url facebook gdrive dropbox instagram evernote flickr skydrive";
+     UPLOADCARE_PUBLIC_KEY = "84f7649b95991b60227d";
+    </script>
+
+    <script charset="utf-8" src="//ucarecdn.com/widget/2.5.5/uploadcare/uploadcare.full.min.js"></script>
+
   </head>
   <body>
     <%= render 'layouts/navbar' %>
@@ -22,5 +31,6 @@
 
     <%= yield %>
 
+    <!-- <!%= render 'layouts/footer' %> -->
   </body>
 </html>

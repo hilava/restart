@@ -13,7 +13,11 @@
               <div class="col-md-8 col-md-offset-1">
                 <div class="card">
                   <div class="card-block">
-                    <%= image_tag "briefcase.jpg", :width => 40 %><br><br>
+                    <% if ! company.logo.blank? %>
+                      <%= image_tag company.logo, :width => 40   %>
+                    <% else %>
+                      <%= image_tag "briefcase.jpg", :width => 40 %><br><br>
+                    <% end %><br><br>
                     <p class="card-text">
                       <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= link_to company.name, company_path(company.id) %></b><br><br>
                       <div><b class="card-title">Description: </b><%= company.description %></div><br>

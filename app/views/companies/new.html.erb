@@ -14,9 +14,14 @@
           <div class="form-group">
             <%= f.text_field :website, class: "form-control", placeholder: "Website"%>
           </div>
+          <!-- uploadcare code -->
           <div class="form-group">
-            <%= f.text_field :logo, class: "form-control", placeholder: "Logo"%>
-          </div>
+            <input type="hidden" role="uploadcare-uploader" name="company[logo]"
+                    value="<%= @company.logo %>"
+                     data-crop="disabled"
+                     data-preview-step="true"
+                     data-images-only="true" />
+          <div>
         <div>
           <center><%= f.submit "Save", class: "btn btn-success" %></center>
         </div>
