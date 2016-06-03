@@ -1,7 +1,6 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
 
-  validates :email,uniqueness: true
   validates :country, presence: true
   validates :city, presence: true
   validates :resume, presence: true

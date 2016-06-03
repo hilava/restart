@@ -2,10 +2,10 @@
   <section>
     <div class="container">
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-md-4">
           <%= image_tag "briefcase.jpg", :width => 150 %>
         </div>
-        <div class="col-xs-8">
+        <div class="col-md-8">
           <div class="card">
             <div class="card-block">
               <h3 class="card-title"><%= @company.name %></h3>
@@ -20,7 +20,7 @@
         <% if @jobs.present? %><br><br>
           <div id="jobs_results">
             <% for job in @jobs do %>
-                <div class="col-xs-8 col-xs-offset-1">
+                <div class="col-md-8 col-md-offset-1">
                   <div class="card">
                     <div class="card-block">
                       <p class="card-text">
