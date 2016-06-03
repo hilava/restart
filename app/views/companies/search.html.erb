@@ -3,9 +3,9 @@
     <div class="container form-inline">
       <%= form_tag(search_company_path, :method => "get", id: "search-form") do %>
       <%= text_field_tag :search, params[:search], placeholder: "Company Name", :class=>"form-control search" %>
-      <%= submit_tag "Find", :class=>"btn btn-primary" %>
-      <% end %>
-
+      <%= submit_tag "Find", :class=>"btn btn-info" %>
+      <% end %><br>
+      <%= button_to "Add Company", new_company_path, method: 'get', class: 'btn btn-primary' %>
       <% if @companies.present? %><br><br>
         <div id="companies_results">
           <% for company in @companies do %>
@@ -34,7 +34,6 @@
         </div>
       <% else %>
         <p>There are no companies containing the term(s) <%= params[:search] %>.</p>
-        <%= button_to "Add Company", new_company_path, method: 'get', class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>

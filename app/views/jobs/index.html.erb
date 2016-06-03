@@ -15,7 +15,7 @@
                   <div class="card-block">
                     <%= image_tag "briefcase.jpg", :width => 40 %><br><br>
                     <p class="card-text">
-                      <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= job.company.name %></b><br><br>
+                      <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= link_to job.company.name, company_path(job.company) %></b><br><br>
                       <small><%= job.city %>,
                       <% if ! job.state.blank? %>
                         <%= job.state %>,

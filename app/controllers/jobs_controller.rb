@@ -1,4 +1,8 @@
 class JobsController < ApplicationController
+  before_filter :set_job, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize, only: [:edit, :update, :destroy]
+
+
   def index
      if params[:search]
        # call search method in model.rb
@@ -14,7 +18,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id])
+    #@job = Job.find(params[:id])
     @user = User.find(@job.user_id)
     render :show
   end
@@ -45,14 +49,14 @@ class JobsController < ApplicationController
   end
 
   def edit
-    @job = Job.find(params[:id])
+    #@job = Job.find(params[:id])
     @user = current_user
     @company = Company.find(@job.company_id)
     render :edit
   end
 
   def update
-    @job = Job.find(params[:id])
+    #@job = Job.find(params[:id])
     if @job.update_attributes(job_params)
       flash[:notice] = "Job updated successfully"
       redirect_to root_path
@@ -63,7 +67,7 @@ class JobsController < ApplicationController
   end
 
   def destroy
-    @job = Job.find(params[:id])
+    #@job = Job.find(params[:id])
     if @job.destroy
       flash[:notice]  = "Job deleted successfully"
       redirect_to root_path
@@ -77,4 +81,17 @@ class JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:category, :title, :email, :phone_number, :description, :user_id, :company_id, :country, :state, :city)
   end
+
+  def set_job
+    job_id = params[:id]
+    @job = Job.find(job_id)
+  end
+
+  def authorize
+    if @job.user_id != current_user.id
+      flash[:alert] = "Only record owners can edit and delete records"
+      redirect_to root_path
+    end
+  end
+
 end
