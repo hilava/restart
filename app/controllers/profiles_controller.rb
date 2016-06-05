@@ -42,6 +42,7 @@ class ProfilesController < ApplicationController
   end
 
 def create
+  profile = Profile.new(profile_params)
   profile.user = current_user
   profile.linkedin = include_https?(profile)
   if profile.save
