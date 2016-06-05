@@ -13,7 +13,6 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile = Profile.find(params[:id])
     if @profile
       @user = User.find(@profile.user_id)
       render :show
@@ -43,7 +42,6 @@ class ProfilesController < ApplicationController
   end
 
 def create
-  profile = Profile.new(profile_params)
   profile.user = current_user
   profile.linkedin = include_https?(profile)
   if profile.save
@@ -57,13 +55,11 @@ def create
 end
 
   def edit
-    #@profile = Profile.find(params[:id])
     @user = current_user
     render :edit
   end
 
   def update
-    #@profile = Profile.find(params[:id])
     @profile.linkedin = include_https?(@profile)
     if @profile.update_attributes(profile_params)
       flash[:notice] = "Profile updated successfully"
@@ -75,7 +71,6 @@ end
   end
 
   def destroy
-    #@profile = Profile.find(params[:id])
     if @profile.destroy
       flash[:notice]  = "Profile deleted successfully"
       redirect_to root_path
@@ -99,7 +94,7 @@ end
   end
 
   def set_profile
-    profile_id = Profile.find(params[:id])
+    profile_id = params[:id]
     @profile = Profile.find(profile_id)
   end
 

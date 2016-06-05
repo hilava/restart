@@ -19,14 +19,14 @@
                       <%= image_tag "default_profile.jpg", :width => 60 %>
                     <% end %><br><br>
                     <p class="card-text">
-                      <b><%= link_to profile.user.first_name, profile_path(profile.user_id) %>
-                      <%= link_to profile.user.last_name, profile_path(profile.user_id) %> </b><br>
+                      <b><%= profile.user.first_name %>
+                      <%= profile.user.last_name %> </b><br>
                       <small><%= profile.city %>,
                       <% if ! profile.state.blank? %>
                         <%= profile.state %>,
                       <% end %><%= profile.country %></small><br>
                     <div><b class="card-title">Occupation: </b><%= profile.occupation %></div><br>
-                    <%= link_to "View", profile_path(profile.user_id)  , class: "btn btn-info" %>
+                    <%= link_to "View", profile_path(profile.id)  , class: "btn btn-info" %>
                   </p><hr/>
                   </div>
                 </div>
