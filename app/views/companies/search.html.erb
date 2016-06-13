@@ -1,44 +1,40 @@
 <section>
-  <div id="company_search" class="top">
-    <div class="container form-inline">
-      <%= form_tag(search_company_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Company Name", :class=>"form-control search" %>
-      <%= submit_tag "Find", :class=>"btn btn-info" %>
-      <% end %><br>
-      <%= button_to "Add Company", new_company_path, method: 'get', class: 'btn btn-primary' %>
-      <% if @companies.present? %><br><br>
-        <div id="companies_results">
-          <% for company in @companies do %>
+  <div class="form-inline top well col-md-4 col-md-offset-4">
+    <%= form_tag(search_company_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Company Name", :class=>"form-control search" %>
+    <%= submit_tag "Find", :class=>"btn btn-info" %>
+    <% end %><br>
+    <%= button_to "Add Company", new_company_path, method: 'get', class: 'btn btn-primary' %>
+  </div><br><br>
+  <div class="well col-md-6 col-md-offset-3">
+    <% if @companies.present? %><br><br>
+      <% for company in @companies do %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <% if ! company.logo.blank? %>
+                <%= image_tag company.logo, :width => 20   %>
+              <% else %>
+                <%= image_tag "briefcase.jpg", :width => 20 %><br><br>
+              <% end %>
+              <%= link_to company.name, company_path(company.id) %>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <div><b>Description: </b><%= company.description %></div><br>
             <div class="row">
-              <div class="col-md-8 col-md-offset-1">
-                <div class="card">
-                  <div class="card-block">
-                    <% if ! company.logo.blank? %>
-                      <%= image_tag company.logo, :width => 40   %>
-                    <% else %>
-                      <%= image_tag "briefcase.jpg", :width => 40 %><br><br>
-                    <% end %><br><br>
-                    <p class="card-text">
-                      <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= link_to company.name, company_path(company.id) %></b><br><br>
-                      <div><b class="card-title">Description: </b><%= company.description %></div><br>
-                    </p>
-                    <div class="row">
-                      <div class="col-md-3">
-                        <%= link_to "View", company_path(company.id)  , class: "btn btn-info" %>
-                      </div>
-                      <div class="col-md-3">
-                        <%= button_to "Post Job", new_company_job_path(company.id), method: 'get', class: 'btn btn-primary' %>
-                      </div>
-                    </div><hr/>
-                  </div>
-                </div>
+              <div class="col-md-3">
+                <%= link_to "View", company_path(company.id)  , class: "btn btn-info" %>
+              </div>
+              <div class="col-md-3">
+                <%= button_to "Post Job", new_company_job_path(company.id), method: 'get', class: 'btn btn-primary' %>
               </div>
             </div>
-          <% end %>
+          </div>
         </div>
-      <% else %>
-        <p>There are no companies containing the term(s) <%= params[:search] %>.</p>
       <% end %>
-    </div>
+    <% else %>
+      <p>There are no companies containing the term(s) <%= params[:search] %>.</p>
+    <% end %>
   </div>
 </section>

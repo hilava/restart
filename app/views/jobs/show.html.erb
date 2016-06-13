@@ -1,47 +1,41 @@
-<div id="job_show" class="top">
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
+<div class="top col-md-8 col-md-offset-2">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= @job.title %></h3><br>
+      <p><b> Company: </b><%= link_to @job.company.name, company_path(@job.company) %>
+        <span class="image">
           <% if ! @job.company.logo.blank? %>
-            <%= image_tag @job.company.logo, :width => 120   %>
+            <%= image_tag @job.company.logo, :width => 40   %>
           <% else %>
-            <%= image_tag "briefcase.jpg", :width => 120 %><br><br>
+            <%= image_tag "briefcase.jpg", :width => 40 %>
           <% end %>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-block">
-              <h3 class="card-title">Title: <%= @job.title %></h3>
-              <div><b>Category: </b><%= @job.category %></div>
-              <small><%= @job.city %>,
-              <% if ! @job.state.blank? %>
-                <%= @job.state %>,
-              <% end %><%= @job.country %></small>
-              <hr/>
-              <div><b>Description: </b><%= @job.description %></div><br>
-              <p class="card-text"><%= fa_icon "briefcase", :class => 'fa-icon' %>
-                <b> Company: </b><%= link_to @job.company.name, company_path(@job.company) %><br><br><br>
-                <u><b>Contact Information</b></u>
-                <div><%= fa_icon "envelope", :class => 'fa-icon' %> <%= mail_to @job.email %></div><br>
-                <div><%= fa_icon "phone", :class => 'fa-icon' %><%= @job.phone_number %></div></p>
-              <% if current_user == @user%>
-              <hr>
-              <div class="row">
-                <div class="col-md-8">
-                  <%= button_to "Edit", edit_job_path(@job), method: :get, class:"btn btn-warning" %>
-                </div>
-                <div class="col-md-4">
-                    <%= button_to "Delete", job_path(@job), method: :delete, class:"btn btn-danger",
-                     data:{confirm: "Are you sure you want to delete this job post?"} %>
-                </div>
-              </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        </div>
-      <br/>
+        </span>
+      </p>
+      <div><b>Category: </b><%= @job.category %></div>
+      <small><%= @job.city %>,
+      <% if ! @job.state.blank? %>
+        <%= @job.state %>,
+      <% end %><%= @job.country %></small>
     </div>
-  </section>
+    <div class="panel-body">
+      <div><b>Description: </b><%= @job.description %></div>
+    </div>
+    <div class="panel-footer">
+      <b>Contact Information</b><br><br>
+      <div><%= fa_icon "envelope", :class => 'fa-icon' %>  <u><%= mail_to @job.email %></u></div>
+      <br>
+      <div><%= fa_icon "phone", :class => 'fa-icon' %>  <%= @job.phone_number %></div>
+    </div>
+  </div>
 </div>
+<% if current_user == @user%>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-3">
+      <%= button_to "Edit", edit_job_path(@job), method: :get, class:"btn btn-warning" %>
+    </div>
+    <div class="col-md-4 col-md-offset-1">
+        <%= button_to "Delete", job_path(@job), method: :delete, class:"btn btn-danger",
+         data:{confirm: "Are you sure you want to delete this job post?"} %>
+    </div>
+  </div>
+<% end %>

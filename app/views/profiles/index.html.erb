@@ -1,44 +1,38 @@
 <section>
-  <div id="profile_index" class="top">
-    <div class="container form-inline">
-      <%= form_tag(profiles_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search profiles", :class=>"form-control search" %>
-      <%= submit_tag "Search", :class=>"btn btn-primary" %>
-      <% end %>
-
-      <% if @profiles.present? %><br><br>
-        <div id="profiles_results">
-          <% for profile in @profiles do %>
-            <div class="row">
-              <div class="col-xs-6 col-xs-offset-1">
-                <div class="card">
-                  <div class="card-block">
-                    <% if ! profile.image.blank? %>
-                      <%= image_tag profile.image, :width => 60   %>
-                    <% else %>
-                      <%= image_tag "default_profile.jpg", :width => 60 %>
-                    <% end %><br><br>
-                    <p class="card-text">
-                      <b><%= profile.user.first_name %>
-                      <%= profile.user.last_name %> </b><br>
-                      <small><%= profile.city %>,
-                      <% if ! profile.state.blank? %>
-                        <%= profile.state %>,
-                      <% end %><%= profile.country %></small><br>
-                    <div><b class="card-title">Occupation: </b><%= profile.occupation %></div><br>
-                    <%= link_to "View", profile_path(profile.id)  , class: "btn btn-info" %>
-                  </p><hr/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-          <!-- uses the will_paginate bootstrap gem -->
-          <%= will_paginate @jobs, renderer: BootstrapPagination::Rails%>
+  <div class="container form-inline top">
+    <%= form_tag(profiles_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search profiles", :class=>"form-control search" %>
+    <%= submit_tag "Search", :class=>"btn btn-primary" %>
+    <% end %>
+  </div><br><br>
+  <div class="well col-md-4 col-md-offset-4">
+    <% if @profiles.present? %><br><br>
+      <% for profile in @profiles do %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= profile.user.first_name %>
+              <%= profile.user.last_name %>, Occupation: <%= profile.occupation %></h3>
+          </div>
+          <div class="panel-body">
+            <% if ! profile.image.blank? %>
+              <%= image_tag profile.image, :width => 60   %>
+            <% else %>
+              <%= image_tag "default_profile.jpg", :width => 60 %>
+            <% end %><br>
+              <small><%= profile.city %>,
+              <% if ! profile.state.blank? %>
+                <%= profile.state %>,
+              <% end %><%= profile.country %></small><br><br>
+            <%= link_to "View", profile_path(profile.id)  , class: "btn btn-info" %>
+          </div>
         </div>
-      <% else %>
-        <p>There are no profiles containing the term(s) <%= params[:search] %>.</p>
       <% end %>
-    </div>
   </div>
+  <div class="col-md-6 col-md-offset-1">
+    <!-- uses the will_paginate bootstrap gem -->
+    <%= will_paginate @jobs, renderer: BootstrapPagination::Rails%>
+  </div>
+  <% else %>
+    <p>There are no profiles containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
 </section>

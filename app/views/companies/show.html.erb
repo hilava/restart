@@ -1,48 +1,42 @@
-<div id="company_show" class="top">
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <% if ! @company.logo.blank? %>
-            <%= image_tag @company.logo, :width => 100   %>
-          <% else %>
-            <%= image_tag "briefcase.jpg", :width => 100 %><br><br>
-          <% end %>
+<section class="top">
+  <div class="well col-md-10 col-md-offset-1">
+    <div class="col-md-3 col-md-offset-1">
+      <% if ! @company.logo.blank? %>
+        <%= image_tag @company.logo, :width => 100 %>
+      <% else %>
+        <%= image_tag "briefcase.jpg", :width => 100 %><br><br>
+      <% end %>
+    </div>
+    <div class="col-md-7">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @company.name %></h3>
         </div>
-        <div class="col-md-8">
-          <div class="card">
-            <div class="card-block">
-              <h3 class="card-title"><%= @company.name %></h3>
-              <div><b>Description: </b><%= @company.description %></div><br>
-              <p class="card-text"><%= link_to "Company Website", @company.website %></p>
-              <hr>
+        <div class="panel-body">
+          <div><b>Description: </b><%= @company.description %></div><br>
+          <div><u><%= link_to "Company Website", @company.website %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if @jobs.present? %>
+    <% for job in @jobs do %>
+        <div class="well col-md-6 col-md-offset-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><u><%= link_to job.title, job_path(job.id) %></u></h3>
+            </div>
+            <div class="panel-body">
+              <small><b>Location: </b><%= job.city %>,
+              <% if ! job.state.blank? %>
+                <%= job.state %>,
+              <% end %><%= job.country %></small><br><br>
+              <div><b>Category: </b><%= job.category %></div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row" id="job_postings">
-        <% if @jobs.present? %><br><br>
-          <div id="jobs_results">
-            <% for job in @jobs do %>
-                <div class="col-md-8 col-md-offset-1">
-                  <div class="card">
-                    <div class="card-block">
-                      <p class="card-text">
-                        <small><b>Location: </b><%= job.city %>,
-                        <% if ! job.state.blank? %>
-                          <%= job.state %>,
-                        <% end %><%= job.country %></small><br>
-                        <div><b class="card-title">Title: </b><%= link_to job.title, job_path(job.id) %></div><br>
-                        <div><b>Category: </b><%= job.category %></div></p><hr/>
-                    </div>
-                  </div>
-                </div>
-            <% end %>
-          </div>
-        <% else %>
-          <p>There are no jobs containing the term(s) <%= params[:search] %>.</p>
-        <% end %>
-      </div>
-    </div>
-  </section>
-</div>
+      <% end %>
+  <% else %>
+    <p>There are no jobs containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+</section>

@@ -1,45 +1,41 @@
 <section>
-  <div id="jobs-index" class="top">
-    <div class="container form-inline">
-      <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search job postings", :class=>"form-control search" %>
-      <%= submit_tag "Search", :class=>"btn btn-primary" %>
-      <% end %>
-
-      <% if @jobs.present? %><br><br>
-        <div id="jobs_results">
-          <% for job in @jobs do %>
-            <div class="row">
-              <div class="col-md-6 col-md-offset-1">
-                <div class="card">
-                  <div class="card-block">
-                    <% if ! job.company.logo.blank? %>
-                      <%= image_tag job.company.logo, :width => 40   %>
-                    <% else %>
-                      <%= image_tag "briefcase.jpg", :width => 40 %>
-                    <% end %><br><br>  
-                    <p class="card-text">
-                      <b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= link_to job.company.name, company_path(job.company) %></b><br><br>
-                      <small><%= job.city %>,
-                      <% if ! job.state.blank? %>
-                        <%= job.state %>,
-                      <% end %><%= job.country %></small><br>
-                      <div><b class="card-title">Title: </b><%= link_to job.title, job_path(job.id) %></div><br>
-                      <div><b>Category: </b><%= job.category %></div>
-                      <span class="quiet"><small>posted <%= time_ago_in_words(job.created_at) %> ago</small></span><br><br>
-                      <%= link_to "View", job_path(job.id)  , class: "btn btn-info" %>
-                    </p><hr/>
-                  </div>
-                </div>
-              </div>
+  <div class="container form-inline top">
+    <%= form_tag(jobs_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search job postings", :class=>"form-control search" %>
+    <%= submit_tag "Search", :class=>"btn btn-primary" %>
+    <% end %>
+  </div><br><br>
+  <div class="well col-md-6 col-md-offset-3">
+    <% if @jobs.present? %><br><br>
+        <% for job in @jobs do %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= link_to job.title, job_path(job.id) %></h3>
             </div>
-          <% end %>
-          <!-- uses the will_paginate bootstrap gem -->
-          <%= will_paginate @jobs, renderer: BootstrapPagination::Rails%>
-        </div>
-      <% else %>
-        <p>There are no jobs containing the term(s) <%= params[:search] %>.</p>
-      <% end %>
-    </div>
-  </div>
+            <div class="panel-body">
+              <% if ! job.company.logo.blank? %>
+                <%= image_tag job.company.logo, :width => 40   %>
+              <% else %>
+                <%= image_tag "briefcase.jpg", :width => 40 %>
+              <% end %><br><br>
+                <p><b><%= fa_icon "briefcase", :class => 'fa-icon' %> Company: <%= link_to job.company.name, company_path(job.company) %></b><br><br>
+                <small><%= job.city %>,
+                <% if ! job.state.blank? %>
+                  <%= job.state %>,
+                <% end %><%= job.country %></small><br>
+                <div><b>Category: </b><%= job.category %></div>
+                <span class="quiet"><small>posted <%= time_ago_in_words(job.created_at) %> ago</small></span><br><br>
+                <%= link_to "View", job_path(job.id)  , class: "btn btn-info" %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-6 col-md-offset-1">
+        <!-- uses the will_paginate bootstrap gem -->
+        <%= will_paginate @jobs, renderer: BootstrapPagination::Rails%>
+      </div>
+    <% else %>
+      <p>There are no jobs containing the term(s) <%= params[:search] %>.</p>
+    <% end %>
 </section>
