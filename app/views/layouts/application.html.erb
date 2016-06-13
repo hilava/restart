@@ -13,6 +13,17 @@
      UPLOADCARE_PUBLIC_KEY = "84f7649b95991b60227d";
     </script>
 
+    <!-- google-analytics script -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-74856060-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+
     <script charset="utf-8" src="//ucarecdn.com/widget/2.5.5/uploadcare/uploadcare.full.min.js"></script>
 
   </head>
@@ -22,9 +33,9 @@
     <div class="row pull-right flash">
       <% flash.each do |name, msg| %>
         <% if name == "notice"%>
-          <strong id="flash-notice"> <%= name.capitalize %>: <%= msg %></strong>
+          <strong id="flash-notice"><%= msg %></strong>
         <% elsif name == "error" || name == "alert" %>
-          <strong id="flash-error"> <%= name.capitalize %>: <%= msg %> </strong>
+          <strong id="flash-error"><%= msg %> </strong>
         <% end %>
       <% end %>
     </div>
