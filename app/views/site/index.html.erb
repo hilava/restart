@@ -1,19 +1,42 @@
 <div id="splash">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-3">Welcome to Restart</h1>
-      <p class="lead">Thinking of you for a change...</p>
-      <p>A job search site for Israelis around the world</p><br>
-      <div class="row">
-        <p class="role well col-md-5">Employers - Find Talent<br><br>
-          <u><b><%= link_to "Post Job", search_company_path,
-          {:style=>'color:#33691E;'}  %><b></u></p>
-      </div><br><br>
-      <div class="row">
-        <p class="role well col-md-5">Job Seekers - Get Found<br><br>
-        <u><b><%= link_to "Create Profile", new_profile_path,
-        {:style=>'color:#33691E;'}  %><b><u></p>
+  <div class="container">
+    <div class="row">
+      <!-- flash notifications -->
+      <div class="pull-right flash">
+        <% flash.each do |name, msg| %>
+          <% if name == "notice"%>
+            <strong id="flash-notice"><%= msg %></strong>
+          <% elsif name == "error" || name == "alert" %>
+            <strong id="flash-error"><%= msg %> </strong>
+          <% end %>
+        <% end %>
       </div>
+      <div class="heading">
+        <h1 class="display-3">Welcome to Restart</h1>
+        <p class="lead">Thinking of you for a change...</p>
+        <p>A job search site for Israelis around the world</p>
+      </div>
+    </div><br>
+    <div class="row">
+      <p class="role well col-md-4">Employers - Looking For Talent?<br><br>
+        <% if ! user_signed_in? %>
+        <!--desplay sign up / log in links only if the user is not logged in -->
+          <b class="action"><u><%= link_to "Sign Up", new_user_registration_path%></u>
+              / <u><%= link_to " Log In  ", new_user_session_path%></u></b>
+        <% end %>
+        <b class="action">--><u>
+           <%= link_to " Post a Job", search_company_path%></u></b>
+      </p>
+    </div><br><br>
+    <div class="row">
+      <p class="role well col-md-4">Job Seekers - Get Found<br><br>
+       <% if ! user_signed_in? %>
+          <b class="action"><u><%= link_to "Sign Up", new_user_registration_path%></u>
+          / <u><%= link_to " Log In  ", new_user_session_path%></u></b>
+       <% end %>
+       <b class="action">--><u>
+            <%= link_to "Create Profile", new_profile_path%><b><u>
+      </p>
     </div>
   </div>
 </div>

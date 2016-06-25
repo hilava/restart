@@ -26,6 +26,8 @@ gem 'kaminari'
 # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 gem 'pry-byebug'
 gem 'hirb'
+# uploadcare - used for document upload
+gem 'uploadcare-rails', "~> 1.0"
 # font awesome
 gem 'font-awesome-rails'
 # Use jquery as the JavaScript library

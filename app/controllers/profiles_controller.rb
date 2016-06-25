@@ -36,7 +36,7 @@ class ProfilesController < ApplicationController
         render :new
       end
     else
-      flash[:notice] = "Please login/sign up in order to create a profile"
+      flash[:alert] = "Please login/sign up in order to create a profile"
       redirect_to root_path
     end
   end
