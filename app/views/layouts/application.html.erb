@@ -29,17 +29,7 @@
   </head>
   <body>
     <%= render 'layouts/navbar' %>
-    <!-- flash notifications -->
-    <div class="row pull-right flash">
-      <% flash.each do |name, msg| %>
-        <% if name == "notice"%>
-          <strong id="flash-notice"><%= msg %></strong>
-        <% elsif name == "error" || name == "alert" %>
-          <strong id="flash-error"><%= msg %> </strong>
-        <% end %>
-      <% end %>
-    </div>
-
+    
     <%= yield %>
 
     <!-- <!%= render 'layouts/footer' %> -->
